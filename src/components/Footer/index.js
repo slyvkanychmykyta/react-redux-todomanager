@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {connect} from 'react-redux';
 import {setAllCompleted} from '../../store/actions/action-creators';
-import {getFilteredTodos} from '../../store/selectors/todos';
+import {getFilteredTodos} from '../../store/selectors';
 
 import Checkbox from "../../theme/assets/Checkbox";
 import Styles from "../TodoManager/styles.module.scss";
@@ -17,7 +17,6 @@ function Footer({todos, setAllCompleted}) {
         }
     };
 
-
     return (
         <footer>
             <Checkbox
@@ -31,8 +30,8 @@ function Footer({todos, setAllCompleted}) {
     )
 }
 
-const mapStateToProps = (state, ownProps) => ({
-    todos: getFilteredTodos(state, ownProps)
+const mapStateToProps = (state) => ({
+    todos: state.todos
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {addTodo} from '../../store/actions';
 import { connect } from 'react-redux';
 
+import {generateRandomId} from '../../instruments';
+
 function TodoForm({ addTodo }) {
     const [value, setValue] = useState('');
 
@@ -12,7 +14,7 @@ function TodoForm({ addTodo }) {
     function submitForm(e) {
         e.preventDefault();
         if (!value.trim()) return;
-        const todoId = Date.now();
+        const todoId = generateRandomId();
         addTodo(todoId, value);
         setValue('');
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import Todo from '../Todo';
 import { connect } from 'react-redux'
 import {editTodo, deleteTodo, toggleCompleteTodo, toggleFavoriteTodo} from "../../store/actions";
-import {getFilteredTodos} from '../../store/selectors/todos';
+import {getFilteredTodos} from '../../store/selectors';
 
 import {generateRandomId} from '../../instruments/helpers';
 
