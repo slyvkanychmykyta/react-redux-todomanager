@@ -1,26 +1,34 @@
 import React from 'react';
-import Todo from '../Todo';
 import { connect } from 'react-redux'
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
+
 import {editTodo, deleteTodo, toggleCompleteTodo, toggleFavoriteTodo} from "../../store/actions";
 import {getFilteredTodos} from '../../store/selectors';
 
-import {generateRandomId} from '../../instruments/helpers';
+import Todo from '../Todo';
+
+import './styles.css';
 
 function TodoList({todos, editTodo, removeTodo, toggleComplete, toggleFavorite}) {
     return (
         <ul>
-            <div>
+            <TransitionGroup>
                 {todos.map((todo) => (
-                    <Todo
-                        key={generateRandomId()}
-                        todo={todo}
-                        onCompleteClick={toggleComplete}
-                        editTodo={editTodo}
-                        onFavoriteClick={toggleFavorite}
-                        onRemoveClick={removeTodo}
-                    />
+                    <CSSTransition
+                        key={todo.id}
+                        timeout={400}
+                        classNames='todo'
+                    >
+                        <Todo
+                            todo={todo}
+                            onCompleteClick={toggleComplete}
+                            editTodo={editTodo}
+                            onFavoriteClick={toggleFavorite}
+                            onRemoveClick={removeTodo}
+                        />
+                    </CSSTransition>
                 ))}
-            </div>
+            </TransitionGroup>
         </ul>
     )
 }

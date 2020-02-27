@@ -21,7 +21,7 @@ function TodoForm({ addTodo }) {
 
     return (
         <form onSubmit={submitForm}>
-            <input value={value} onChange={handleChange} placeholder="Описание новой задачи" type="text"/>
+            <input value={value} maxLength='50' onChange={handleChange} placeholder="Описание новой задачи" type="text"/>
             <button type='submit'>Добавить задачу</button>
         </form>
     );

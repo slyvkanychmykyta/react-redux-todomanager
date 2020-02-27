@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {connect} from 'react-redux';
 import {setAllCompleted} from '../../store/actions/action-creators';
-import {getFilteredTodos} from '../../store/selectors';
 
 import Checkbox from "../../theme/assets/Checkbox";
 import Styles from "../TodoManager/styles.module.scss";

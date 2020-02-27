@@ -13,7 +13,7 @@ export default function Todo ({todo, editTodo, onRemoveClick, onCompleteClick, o
     const inputElement = useRef(null);
     const {id, description, completed, favorite} = todo;
 
-    React.useEffect(() => {
+    React.useLayoutEffect(() => {
         if (focused) focusOnElement(inputElement);
     }, [focused]);
 

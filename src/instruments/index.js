@@ -1,5 +1,6 @@
 export {
     getDisplayName,
     sortTasks,
-    generateRandomId
+    generateRandomId,
+    manageLocalStorage
 } from './helpers';
