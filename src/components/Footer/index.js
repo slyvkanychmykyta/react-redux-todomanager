@@ -7,7 +7,7 @@ import Styles from "../TodoManager/styles.module.scss";
 
 
 
-function Footer({todos, setAllCompleted}) {
+export function Footer({todos, setAllCompleted}) {
     const isChecked = todos.every(({completed}) => completed);
 
     const handleClick = () => {

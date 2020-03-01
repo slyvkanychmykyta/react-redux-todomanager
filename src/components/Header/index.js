@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
 export default function Header({value, onChange}) {
-
     return (
         <header>
             <h1>Планировщик задач</h1>

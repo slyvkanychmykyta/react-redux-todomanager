@@ -9,7 +9,7 @@ import Footer from '../Footer'
 // Instruments
 import Styles from './styles.module.scss';
 
-export default function TodoManager(props) {
+export default function TodoManager() {
     const [queryValue, setQueryValue] = useState('');
 
     const handleQueryValue = (e) => {
@@ -21,7 +21,7 @@ export default function TodoManager(props) {
             <main>
                 <Header value={queryValue} onChange={handleQueryValue}/>
                 <section>
-                    <TodoForm/>
+                    <TodoForm />
                     <TodoList query={queryValue}/>
                 </section>
                 <Footer query={queryValue}/>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import {generateRandomId} from '../../instruments';
 
-function TodoForm({ addTodo }) {
+export function TodoForm({ addTodo }) {
     const [value, setValue] = useState('');
 
     function handleChange(e) {

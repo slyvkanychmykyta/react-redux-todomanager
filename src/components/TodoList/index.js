@@ -9,7 +9,7 @@ import Todo from '../Todo';
 
 import './styles.css';
 
-function TodoList({todos, editTodo, removeTodo, toggleComplete, toggleFavorite}) {
+export function TodoList({todos, editTodo, removeTodo, toggleComplete, toggleFavorite}) {
     return (
         <ul>
             <TransitionGroup>
