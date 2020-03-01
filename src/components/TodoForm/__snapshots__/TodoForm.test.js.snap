@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test should render component correctly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <input
+    maxLength="50"
+    onChange={[Function]}
+    placeholder="Описание новой задачи"
+    type="text"
+    value=""
+  />
+  <button
+    type="submit"
+  >
+    Добавить задачу
+  </button>
+</form>
+`;

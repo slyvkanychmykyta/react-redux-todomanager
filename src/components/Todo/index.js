@@ -1,5 +1,8 @@
 // Core
 import React, { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
+
+
 import Checkbox from '../../theme/assets/Checkbox';
 import Star from '../../theme/assets/Star';
 import Edit from '../../theme/assets/Edit';
@@ -76,4 +79,18 @@ export default function Todo ({todo, editTodo, onRemoveClick, onCompleteClick, o
             </div>
         </li>
     )
+};
+
+Todo.propTypes = {
+    todo: PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+            completed: PropTypes.bool.isRequired,
+            favorite: PropTypes.bool.isRequired
+        }
+    ).isRequired,
+    editTodo: PropTypes.func.isRequired,
+    removeTodo: PropTypes.func.isRequired,
+    toggleComplete: PropTypes.func.isRequired,
+    toggleFavorite: PropTypes.func.isRequired
 };

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import {addTodo} from '../../store/actions';
 import { connect } from 'react-redux';
 
@@ -26,6 +27,10 @@ export function TodoForm({ addTodo }) {
         </form>
     );
 }
+
+TodoForm.propTypes = {
+    addTodo: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = (dispatch) => ({
    addTodo: (id, description) => dispatch(addTodo(id, description))

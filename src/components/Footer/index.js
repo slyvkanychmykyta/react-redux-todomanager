@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {setAllCompleted} from '../../store/actions/action-creators';
 
 import Checkbox from "../../theme/assets/Checkbox";
 import Styles from "../TodoManager/styles.module.scss";
-
-
 
 export function Footer({todos, setAllCompleted}) {
     const isChecked = todos.every(({completed}) => completed);
@@ -28,6 +27,11 @@ export function Footer({todos, setAllCompleted}) {
         </footer>
     )
 }
+
+Footer.propTypes = {
+    todos: PropTypes.array.isRequired,
+    setAllCompleted: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => ({
     todos: state.todos

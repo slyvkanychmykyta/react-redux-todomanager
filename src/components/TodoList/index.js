@@ -1,5 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 import {editTodo, deleteTodo, toggleCompleteTodo, toggleFavoriteTodo} from "../../store/actions";
@@ -32,6 +33,14 @@ export function TodoList({todos, editTodo, removeTodo, toggleComplete, toggleFav
         </ul>
     )
 }
+
+TodoList.propTypes = {
+    todos: PropTypes.array.isRequired,
+    editTodo: PropTypes.func.isRequired,
+    removeTodo: PropTypes.func.isRequired,
+    toggleComplete: PropTypes.func.isRequired,
+    toggleFavorite: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state, ownProps) => {
     return ({
