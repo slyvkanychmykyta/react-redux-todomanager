@@ -12,35 +12,36 @@ import Remove from '../../theme/assets/Remove';
 import Styles from './styles.module.scss';
 
 export default function Todo ({todo, editTodo, onRemoveClick, onCompleteClick, onFavoriteClick}) {
-    const [focused, setFocused] = useState(false);
+    const [active, setActive] = useState(false);
     const inputElement = useRef(null);
     const {id, description, completed, favorite} = todo;
 
     React.useLayoutEffect(() => {
-        if (focused) focusOnElement(inputElement);
-    }, [focused]);
+        if (active) focusOnElement(inputElement);
+    }, [active]);
 
     const focusOnElement = (elem) => elem.current.focus();
     const isKey = (e,key) => e.key === key;
+    const isEqual = (a, b) => a === b;
+
     const handleDescriptionChange = () => {
-        inputElement.current.value !== description ?
-            editTodo(id, inputElement.current.value) :
-            setFocused(false);
-    };
-
-    const onEditBtnClick = () => {
-        if (!focused) {
-            setFocused(true);
-            return;
+        if (!isEqual(inputElement.current.value, description)) {
+            editTodo(id, inputElement.current.value);
         }
-        handleDescriptionChange();
+        setActive(false);
     };
-
+    const onEditBtnClick = () => {
+        if (active) {
+            handleDescriptionChange();
+        } else {
+            setActive(true);
+        }
+    };
     const onKeyPress = (e) => {
         if (isKey(e, `Enter`)) handleDescriptionChange();
-        if (isKey(e, `Escape`)) {
-            if (inputElement.current.value !== description) editTodo(id, description);
-            setFocused(false);
+        if (isKey(e, `Escape`) && !isEqual(inputElement.current.value, description)) {
+            inputElement.current.value = description;
+            setActive(false);
         }
     };
 
@@ -54,7 +55,7 @@ export default function Todo ({todo, editTodo, onRemoveClick, onCompleteClick, o
                     onClick={() => onCompleteClick(id)}
                     checked={completed}
                 />
-                <input disabled={!focused} onKeyDown={onKeyPress} ref={inputElement} defaultValue={description} maxLength="50" type="text"/>
+                <input disabled={!active} onKeyDown={onKeyPress} ref={inputElement} defaultValue={description} maxLength="50" type="text"/>
             </div>
             <div className={Styles.actions}>
                 <Star inlineBlock

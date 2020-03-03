@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 import {editTodo, deleteTodo, toggleCompleteTodo, toggleFavoriteTodo} from "../../store/actions";
 import {getFilteredTodos} from '../../store/selectors';
@@ -10,26 +9,20 @@ import Todo from '../Todo';
 
 import './styles.css';
 
+
 export function TodoList({todos, editTodo, removeTodo, toggleComplete, toggleFavorite}) {
     return (
         <ul>
-            <TransitionGroup>
-                {todos.map((todo) => (
-                    <CSSTransition
-                        key={todo.id}
-                        timeout={400}
-                        classNames='todo'
-                    >
-                        <Todo
-                            todo={todo}
-                            onCompleteClick={toggleComplete}
-                            editTodo={editTodo}
-                            onFavoriteClick={toggleFavorite}
-                            onRemoveClick={removeTodo}
-                        />
-                    </CSSTransition>
-                ))}
-            </TransitionGroup>
+            {todos.map((todo) => (
+                <Todo
+                    key={todo.id}
+                    todo={todo}
+                    onCompleteClick={toggleComplete}
+                    editTodo={editTodo}
+                    onFavoriteClick={toggleFavorite}
+                    onRemoveClick={removeTodo}
+                />
+            ))}
         </ul>
     )
 }
