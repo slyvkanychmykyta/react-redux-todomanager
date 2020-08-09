@@ -1,4 +1,4 @@
-import {sortTasks} from '../../utils/tasks';
+import {sortTasks} from '../../utils/helpers/tasks';
 import {createSelector} from '@reduxjs/toolkit';
 
 const getQuery = (state) => state.queryValue;

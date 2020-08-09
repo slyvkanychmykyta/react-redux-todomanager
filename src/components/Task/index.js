@@ -1,6 +1,8 @@
 // Core
 import React, { useState, useRef, useLayoutEffect} from 'react';
 import PropTypes from 'prop-types';
+import {isEqual} from 'lodash';
+import {KEYS} from "../../utils/constanst";
 
 import Styles from './styles.module.scss';
 import {FaStar} from "react-icons/fa";
@@ -10,22 +12,18 @@ import {GrCheckbox} from "react-icons/gr";
 import {GrCheckboxSelected} from "react-icons/gr";
 
 
-export default function Task ({task, editTodo, onRemoveClick, onCompleteClick, onFavoriteClick}) {
+export default function Task ({task, editTask, onRemoveClick, onCompleteClick, onFavoriteClick}) {
     const [active, setActive] = useState(false);
     const inputElement = useRef(null);
     const {id, description, completed, favorite} = task;
 
     useLayoutEffect(() => {
-            if (active) focusOnRefElement(inputElement);
+            if (active) inputElement.current.focus();
         }, [active]);
-
-    const focusOnRefElement = (elem) => elem.current.focus();
-    const isKey = (e,key) => e.key === key;
-    const isEqual = (a, b) => a === b;
 
     const handleDescriptionChange = () => {
         if (!isEqual(inputElement.current.value, description)) {
-            editTodo(id, inputElement.current.value);
+            editTask(id, inputElement.current.value);
         }
         setActive(false);
     };
@@ -33,8 +31,8 @@ export default function Task ({task, editTodo, onRemoveClick, onCompleteClick, o
         active ? handleDescriptionChange() : setActive(true);
     };
     const onKeyPress = (e) => {
-        if (isKey(e, `Enter`)) handleDescriptionChange();
-        if (isKey(e, `Escape`) && !isEqual(inputElement.current.value, description)) {
+        if (isEqual(e.key, KEYS.ENTER)) handleDescriptionChange();
+        if (isEqual(e.key, KEYS.ESCAPE) && !isEqual(inputElement.current.value, description)) {
             inputElement.current.value = description;
             setActive(false);
         }

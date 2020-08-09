@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {manageLocalStorage} from '../utils/helpers';
+import {manageLocalStorage} from '../utils/helpers/helpers';
 import {rootReducer} from '../store/reducers';
 
 
