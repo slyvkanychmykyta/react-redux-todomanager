@@ -1,5 +1,5 @@
 // Core
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useLayoutEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 
@@ -11,16 +11,16 @@ import Remove from '../../theme/assets/Remove';
 // Instruments
 import Styles from './styles.module.scss';
 
-export default function Todo ({todo, editTodo, onRemoveClick, onCompleteClick, onFavoriteClick}) {
+export default function Task ({todo, editTodo, onRemoveClick, onCompleteClick, onFavoriteClick}) {
     const [active, setActive] = useState(false);
     const inputElement = useRef(null);
     const {id, description, completed, favorite} = todo;
 
-    React.useLayoutEffect(() => {
-        if (active) focusOnElement(inputElement);
-    }, [active]);
+    useLayoutEffect(() => {
+            if (active) focusOnRefElement(inputElement);
+        }, [active]);
 
-    const focusOnElement = (elem) => elem.current.focus();
+    const focusOnRefElement = (elem) => elem.current.focus();
     const isKey = (e,key) => e.key === key;
     const isEqual = (a, b) => a === b;
 
@@ -31,11 +31,7 @@ export default function Todo ({todo, editTodo, onRemoveClick, onCompleteClick, o
         setActive(false);
     };
     const onEditBtnClick = () => {
-        if (active) {
-            handleDescriptionChange();
-        } else {
-            setActive(true);
-        }
+        active ? handleDescriptionChange() : setActive(true);
     };
     const onKeyPress = (e) => {
         if (isKey(e, `Enter`)) handleDescriptionChange();
@@ -82,16 +78,16 @@ export default function Todo ({todo, editTodo, onRemoveClick, onCompleteClick, o
     )
 };
 
-Todo.propTypes = {
-    todo: PropTypes.shape({
+Task.propTypes = {
+    taks: PropTypes.shape({
             id: PropTypes.string.isRequired,
             description: PropTypes.string.isRequired,
             completed: PropTypes.bool.isRequired,
             favorite: PropTypes.bool.isRequired
         }
     ).isRequired,
-    editTodo: PropTypes.func.isRequired,
-    removeTodo: PropTypes.func.isRequired,
-    toggleComplete: PropTypes.func.isRequired,
-    toggleFavorite: PropTypes.func.isRequired
+    editTask: PropTypes.func.isRequired,
+    onRemoveTask: PropTypes.func.isRequired,
+    onCompleteClick: PropTypes.func.isRequired,
+    onFavoriteClick: PropTypes.func.isRequired
 };

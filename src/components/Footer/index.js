@@ -4,10 +4,10 @@ import {connect} from 'react-redux';
 import {setAllCompleted} from '../../store/actions/action-creators';
 
 import Checkbox from "../../theme/assets/Checkbox";
-import Styles from "../TodoManager/styles.module.scss";
+import Styles from "../TaskManager/styles.module.scss";
 
-export function Footer({todos, setAllCompleted}) {
-    const isChecked = todos.every(({completed}) => completed);
+export function Footer({tasks, setAllCompleted}) {
+    const isChecked = tasks.every(({completed}) => completed);
 
     const handleClick = () => {
         if (!isChecked) {
@@ -29,12 +29,12 @@ export function Footer({todos, setAllCompleted}) {
 }
 
 Footer.propTypes = {
-    todos: PropTypes.array.isRequired,
-    setAllCompleted: PropTypes.func.isRequired
+    tasks: PropTypes.array.isRequired,
+    setAllCompleted: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-    todos: state.todos
+    tasks: state.tasks,
 });
 
 const mapDispatchToProps = (dispatch) => ({

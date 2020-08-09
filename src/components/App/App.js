@@ -1,7 +1,7 @@
 // Core
 import React from 'react';
 
-import TodoManager from '../TodoManager';
+import TodoManager from '../TaskManager';
 
 export default function App() {
     return (

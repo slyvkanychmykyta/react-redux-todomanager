@@ -1,8 +1,9 @@
 export {
-    addTodo,
-    deleteTodo,
-    editTodo,
-    toggleCompleteTodo,
-    toggleFavoriteTodo,
+    addTask,
+    deleteTask,
+    editTask,
+    toggleCompleteTask,
+    toggleFavoriteTask,
+    setQueryValue,
     ActionTypes
 } from './action-creators';

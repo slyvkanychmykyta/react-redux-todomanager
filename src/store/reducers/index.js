@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
-import {todo} from "./todo";
+import {tasks, queryValue} from "./todo";
 
 export const rootReducer = combineReducers({
-    todos: todo
+    tasks: tasks,
+    queryValue,
 });

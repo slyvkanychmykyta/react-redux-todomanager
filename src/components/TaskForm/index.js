@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {addTodo} from '../../store/actions';
+import {addTask} from '../../store/actions';
 import { connect } from 'react-redux';
 
 import {generateRandomId} from '../../instruments';
 
-export function TodoForm({ addTodo }) {
+export function TaskForm({ addTask }) {
     const [value, setValue] = useState('');
 
     function handleChange(e) {
@@ -15,8 +15,8 @@ export function TodoForm({ addTodo }) {
     function submitForm(e) {
         e.preventDefault();
         if (!value.trim()) return;
-        const todoId = generateRandomId();
-        addTodo(todoId, value);
+        const taskId = generateRandomId();
+        addTask(taskId, value);
         setValue('');
     }
 
@@ -28,12 +28,12 @@ export function TodoForm({ addTodo }) {
     );
 }
 
-TodoForm.propTypes = {
-    addTodo: PropTypes.func.isRequired
+TaskForm.propTypes = {
+    addTask: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-   addTodo: (id, description) => dispatch(addTodo(id, description))
+   addTask: (id, description) => dispatch(addTask(id, description))
 });
 
-export default connect(null, mapDispatchToProps)(TodoForm);
+export default connect(null, mapDispatchToProps)(TaskForm);

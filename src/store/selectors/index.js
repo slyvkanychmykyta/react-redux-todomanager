@@ -1,8 +1,16 @@
 import {sortTasks} from '../../instruments';
+import {createSelector} from 'reselect';
 
-export const getFilteredTodos = (state, ownProps) => {
-    const {query} = ownProps;
-    const {todos} = state;
-    const filteredTodos = todos.filter((todo) => todo.description.toLowerCase().includes(query.toLowerCase()));
-    return sortTasks(filteredTodos);
-};
+const getQuery = (state) => state.queryValue;
+const getTasks = (state) => state.tasks;
+
+const getFilteredTodos = createSelector(
+    getQuery,
+    getTasks,
+    (queryValue, tasks) => tasks.filter((task) => task.description.toLowerCase().includes(queryValue.toLowerCase()))
+);
+
+export const getSortedTasks = createSelector(
+    getFilteredTodos,
+    (tasks) => sortTasks(tasks)
+);
