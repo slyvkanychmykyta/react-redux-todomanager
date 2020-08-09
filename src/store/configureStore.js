@@ -5,9 +5,9 @@ import {rootReducer} from '../store/reducers';
 
 
 export const configureStore = () => {
-    const todos = manageLocalStorage.loadData('todos');
+    const tasks = manageLocalStorage.loadData('tasks');
     const initialState = {
-        todos: todos
+        tasks: tasks
     };
     const store = createStore(
         rootReducer,
@@ -16,7 +16,7 @@ export const configureStore = () => {
     );
 
     store.subscribe(() => {
-        manageLocalStorage.saveData('todos', store.getState().todos);
+        manageLocalStorage.saveData('tasks', store.getState().tasks);
     });
 
     return store;

@@ -7,12 +7,12 @@ import {getSortedTasks} from '../../store/selectors';
 
 import Task from '../Task';
 
-import './styles.css';
+import Styles from './styles.module.scss'
 
 
 export function TaskList({tasks, editTask, removeTask, toggleComplete, toggleFavorite}) {
     return (
-        <ul>
+        <ul className={Styles.list}>
             {tasks.map((task) => (
                 <Task
                     key={task.id}

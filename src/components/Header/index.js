@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from "prop-types";
 import {setQueryValue} from "../../store/actions/action-creators";
 import {connect} from "react-redux";
+
+import Styles from './styles.module.scss';
 
 export function Header({queryValue, setQueryValue}) {
     const handleChange = ({target}) => {
@@ -9,9 +11,9 @@ export function Header({queryValue, setQueryValue}) {
     };
 
     return (
-        <header>
-            <h1>Планировщик задач</h1>
-            <input value={queryValue} onChange={handleChange} placeholder="Поиск" type="text"/>
+        <header className={Styles.header}>
+            <h1 className={Styles.pageTitle}>Планировщик задач</h1>
+            <input className={Styles.filterTask} value={queryValue} onChange={handleChange} placeholder="Поиск" type="text"/>
         </header>
     );
 }

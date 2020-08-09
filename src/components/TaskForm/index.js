@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import {generateRandomId} from '../../instruments';
 
+import Styles from './styles.module.scss';
+
 export function TaskForm({ addTask }) {
     const [value, setValue] = useState('');
 
@@ -21,9 +23,9 @@ export function TaskForm({ addTask }) {
     }
 
     return (
-        <form onSubmit={submitForm}>
-            <input value={value} maxLength='50' onChange={handleChange} placeholder="Описание новой задачи" type="text"/>
-            <button type='submit'>Добавить задачу</button>
+        <form className={Styles.form} onSubmit={submitForm}>
+            <input className={Styles.addTask} value={value} maxLength='50' onChange={handleChange} placeholder="Описание новой задачи" type="text"/>
+            <button className={Styles.submitBtn} type='submit'>Добавить задачу</button>
         </form>
     );
 }

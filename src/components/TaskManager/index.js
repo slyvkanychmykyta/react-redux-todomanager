@@ -12,9 +12,9 @@ import Styles from './styles.module.scss';
 export default function TodoManager() {
     return (
         <section className={Styles.scheduler}>
-            <main>
+            <main className={Styles.main}>
                 <Header />
-                <section>
+                <section className={Styles.tasksSection}>
                     <TodoForm />
                     <TodoList />
                 </section>

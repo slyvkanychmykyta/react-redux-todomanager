@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import {setAllCompleted} from '../../store/actions/action-creators';
 
 import Checkbox from "../../theme/assets/Checkbox";
-import Styles from "../TaskManager/styles.module.scss";
+
+import Styles from './styles.module.scss';
 
 export function Footer({tasks, setAllCompleted}) {
     const isChecked = tasks.every(({completed}) => completed);
@@ -16,7 +17,7 @@ export function Footer({tasks, setAllCompleted}) {
     };
 
     return (
-        <footer>
+        <footer className={Styles.footer}>
             <Checkbox
                 color1={`rgb(0, 0, 0)`}
                 color2={`rgb(255, 255, 255)`}

@@ -1,5 +1,5 @@
 // Core
-import React, { useState, useRef, useLayoutEffect, useCallback } from 'react';
+import React, { useState, useRef, useLayoutEffect} from 'react';
 import PropTypes from 'prop-types';
 
 
@@ -11,10 +11,10 @@ import Remove from '../../theme/assets/Remove';
 // Instruments
 import Styles from './styles.module.scss';
 
-export default function Task ({todo, editTodo, onRemoveClick, onCompleteClick, onFavoriteClick}) {
+export default function Task ({task, editTodo, onRemoveClick, onCompleteClick, onFavoriteClick}) {
     const [active, setActive] = useState(false);
     const inputElement = useRef(null);
-    const {id, description, completed, favorite} = todo;
+    const {id, description, completed, favorite} = task;
 
     useLayoutEffect(() => {
             if (active) focusOnRefElement(inputElement);
@@ -43,28 +43,28 @@ export default function Task ({todo, editTodo, onRemoveClick, onCompleteClick, o
 
     return (
         <li className={Styles.task}>
-            <div className={Styles.content}>
+            <div className={Styles.taskContent}>
                 <Checkbox
-                    className={Styles.toggleTaskCompletedState}
+                    className={Styles.actionIcon}
                     color1={`rgb(59, 142, 243)`}
                     color2={`rgb(255, 255, 255)`}
                     onClick={() => onCompleteClick(id)}
                     checked={completed}
                 />
-                <input disabled={!active} onKeyDown={onKeyPress} ref={inputElement} defaultValue={description} maxLength="50" type="text"/>
+                <input className={Styles.taskEdit} disabled={!active} onKeyDown={onKeyPress} ref={inputElement} defaultValue={description} maxLength="50" type="text"/>
             </div>
-            <div className={Styles.actions}>
+            <div className={Styles.taskActions}>
                 <Star inlineBlock
                       color1={`rgb(59, 142, 243)`}
                       color2={`rgb(0, 0, 0)`}
-                      className={Styles.toggleTaskFavoriteState}
+                      className={Styles.actionIcon}
                       onClick={() => onFavoriteClick(id)}
                       checked={favorite}
                 />
                 <Edit inlineBlock
                       color1={`rgb(59, 142, 243)`}
                       color2={`rgb(0, 0, 0)`}
-                      className={Styles.updateTaskMessageOnClick}
+                      className={Styles.actionIcon}
                       onClick={onEditBtnClick}
                 />
                 <Remove
@@ -79,7 +79,7 @@ export default function Task ({todo, editTodo, onRemoveClick, onCompleteClick, o
 };
 
 Task.propTypes = {
-    taks: PropTypes.shape({
+    task: PropTypes.shape({
             id: PropTypes.string.isRequired,
             description: PropTypes.string.isRequired,
             completed: PropTypes.bool.isRequired,
