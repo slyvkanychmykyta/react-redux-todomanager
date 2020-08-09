@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {addTask} from '../../store/actions';
 import { connect } from 'react-redux';
 
-import {generateRandomId} from '../../instruments';
+import {generateRandomId} from '../../utils/helpers';
 
 import Styles from './styles.module.scss';
 

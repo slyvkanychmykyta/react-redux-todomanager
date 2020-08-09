@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {setAllCompleted} from '../../store/actions/action-creators';
 
-import Checkbox from "../../theme/assets/Checkbox";
+import {GrCheckbox} from "react-icons/gr";
+import {GrCheckboxSelected} from "react-icons/gr";
 
 import Styles from './styles.module.scss';
 
@@ -18,13 +19,13 @@ export function Footer({tasks, setAllCompleted}) {
 
     return (
         <footer className={Styles.footer}>
-            <Checkbox
-                color1={`rgb(0, 0, 0)`}
-                color2={`rgb(255, 255, 255)`}
-                onClick={handleClick}
-                checked={isChecked}
-            />
-            <span className={Styles.completeAllTasks}>Все задачи выполнены</span>
+            <input className={Styles.checkbox} onClick={handleClick} type="checkbox" id="check-all-tasks"/>
+            <label className={Styles.checkboxLabel} htmlFor="check-all-tasks">
+                <span className={Styles.iconWrapper}>
+                    {isChecked ? <GrCheckboxSelected/> : <GrCheckbox/>}
+                </span>
+                <span className={Styles.completeAllTasks}>Все задачи выполнены</span>
+            </label>
         </footer>
     )
 }

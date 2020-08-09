@@ -30,7 +30,7 @@
   color: var(--paletteColor2);
   border: 0;
   cursor: pointer;
-  background-image: url('../../theme/assets/plus-icon.svg');
+  background-image: url('../../theme/images/plus-icon.svg');
   background-repeat: no-repeat;
   background-size: 18px 18px;
   background-position: 6% 50%;
@@ -43,4 +43,10 @@
   @media (max-width: 840px) {
     margin-bottom: 12px;
   }
+}
+
+.plusIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }

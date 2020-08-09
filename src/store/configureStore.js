@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import {manageLocalStorage} from '../instruments';
+import {manageLocalStorage} from '../utils/helpers';
 import {rootReducer} from '../store/reducers';
 
 

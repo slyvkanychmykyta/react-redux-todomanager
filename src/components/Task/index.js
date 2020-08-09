@@ -2,14 +2,13 @@
 import React, { useState, useRef, useLayoutEffect} from 'react';
 import PropTypes from 'prop-types';
 
-
-import Checkbox from '../../theme/assets/Checkbox';
-import Star from '../../theme/assets/Star';
-import Edit from '../../theme/assets/Edit';
-import Remove from '../../theme/assets/Remove';
-
-// Instruments
 import Styles from './styles.module.scss';
+import {FaStar} from "react-icons/fa";
+import {FaEdit} from "react-icons/fa";
+import {MdClose} from "react-icons/md";
+import {GrCheckbox} from "react-icons/gr";
+import {GrCheckboxSelected} from "react-icons/gr";
+
 
 export default function Task ({task, editTodo, onRemoveClick, onCompleteClick, onFavoriteClick}) {
     const [active, setActive] = useState(false);
@@ -44,33 +43,20 @@ export default function Task ({task, editTodo, onRemoveClick, onCompleteClick, o
     return (
         <li className={Styles.task}>
             <div className={Styles.taskContent}>
-                <Checkbox
-                    className={Styles.actionIcon}
-                    color1={`rgb(59, 142, 243)`}
-                    color2={`rgb(255, 255, 255)`}
-                    onClick={() => onCompleteClick(id)}
-                    checked={completed}
-                />
+                <span onClick={() => onCompleteClick(id)}>
+                    {completed ? <GrCheckboxSelected /> : <GrCheckbox />}
+                </span>
                 <input className={Styles.taskEdit} disabled={!active} onKeyDown={onKeyPress} ref={inputElement} defaultValue={description} maxLength="50" type="text"/>
             </div>
             <div className={Styles.taskActions}>
-                <Star inlineBlock
-                      color1={`rgb(59, 142, 243)`}
-                      color2={`rgb(0, 0, 0)`}
-                      className={Styles.actionIcon}
-                      onClick={() => onFavoriteClick(id)}
-                      checked={favorite}
+                <FaStar className={`${Styles.actionIcon} ${favorite ? Styles.isFavorite : ``}`}
+                        onClick={() => onFavoriteClick(id)}
                 />
-                <Edit inlineBlock
-                      color1={`rgb(59, 142, 243)`}
-                      color2={`rgb(0, 0, 0)`}
-                      className={Styles.actionIcon}
-                      onClick={onEditBtnClick}
+                <FaEdit className={Styles.actionIcon}
+                        onClick={onEditBtnClick}
                 />
-                <Remove
-                    inlineBlock
-                    color1={`rgb(59, 142, 243)`}
-                    color2={`rgb(0, 0, 0)`}
+                <MdClose
+                    className={Styles.actionIcon}
                     onClick={() => onRemoveClick(id)}
                 />
             </div>
@@ -87,7 +73,7 @@ Task.propTypes = {
         }
     ).isRequired,
     editTask: PropTypes.func.isRequired,
-    onRemoveTask: PropTypes.func.isRequired,
+    onRemoveClick: PropTypes.func.isRequired,
     onCompleteClick: PropTypes.func.isRequired,
     onFavoriteClick: PropTypes.func.isRequired
 };

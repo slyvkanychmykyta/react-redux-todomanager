@@ -30,8 +30,19 @@
 }
 
 .actionIcon {
+    color: grey;
     cursor: pointer;
+    width: 20px;
+    height: 20px;
     margin-right: 20px;
+}
+
+.actionIcon:hover {
+    color: var(--paletteColor3);
+}
+
+.isFavorite {
+    color: var(--paletteColor3);
 }
 
 .actionIcon:last-child {

@@ -1,8 +1,4 @@
 .footer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
   @media (max-width: 840px) {
     margin-bottom: 14px;
   }
@@ -20,4 +16,19 @@
   @media (max-width: 840px) {
     font-size: 18px;
   }
+}
+
+.iconWrapper {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
 }

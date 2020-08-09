@@ -1,4 +1,4 @@
-import {sortTasks} from '../../instruments';
+import {sortTasks} from '../../utils/tasks';
 import {createSelector} from 'reselect';
 
 const getQuery = (state) => state.queryValue;

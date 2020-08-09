@@ -26,7 +26,7 @@ export function tasks(state = initialState.tasks, action) {
         case ActionTypes.EDIT_TASK:
             return state.map((task) => task.id !== action.id ? task : {...task, description: action.description});
         case ActionTypes.SET_ALL_COMPLETED:
-            return state.map((task) => task.id !== action.id ? task : {...task, completed: true});
+            return state.map((task) => ({...task, completed: true}));
         default:
             return state;
     }
