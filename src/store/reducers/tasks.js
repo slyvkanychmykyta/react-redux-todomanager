@@ -1,41 +1,32 @@
 import {ActionTypes} from '../actions/action-creators';
+import {createReducer} from "@reduxjs/toolkit";
 
 const initialState = {
     tasks: [],
     queryValue: ``,
 };
 
-export function tasks(state = initialState.tasks, action) {
-    switch (action.type) {
-        case ActionTypes.ADD_TASK:
-            return [
-                ...state,
-                {
-                    id: action.id,
-                    description: action.description,
-                    completed: false,
-                    favorite: false
-                }
-            ];
-        case ActionTypes.DELETE_TASK:
-            return state.filter((task) => task.id !== action.id);
-        case ActionTypes.TOGGLE_COMPLETE_TASK:
-            return state.map((task) => task.id !== action.id ? task : {...task, completed: !task.completed});
-        case ActionTypes.TOGGLE_FAVORITE_TASK:
-            return state.map((task) => task.id !== action.id ? task : {...task, favorite: !task.favorite});
-        case ActionTypes.EDIT_TASK:
-            return state.map((task) => task.id !== action.id ? task : {...task, description: action.description});
-        case ActionTypes.SET_ALL_COMPLETED:
-            return state.map((task) => ({...task, completed: true}));
-        default:
-            return state;
-    }
-}
+export const tasks = createReducer(initialState.tasks, {
+    [ActionTypes.ADD_TASK]: (state, action) => {
+        return [
+            ...state,
+             {
+                 id: action.payload.id,
+                 description: action.payload.description,
+                 completed: false,
+                 favorite: false
+             }
+         ]
+    },
+    [ActionTypes.TOGGLE_COMPLETE_TASK]: (state, action) => state.map((task) => task.id !== action.payload.id ? task : {...task, completed: !task.completed}),
+    [ActionTypes.DELETE_TASK]: (state, action) => state.filter((task) => task.id !== action.payload.id),
+    [ActionTypes.TOGGLE_FAVORITE_TASK]: (state, action) => state.map((task) => task.id !== action.payload.id ? task : {...task, favorite: !task.favorite}),
+    [ActionTypes.EDIT_TASK]: (state, action) => state.map((task) => task.id !== action.payload.id ? task : {...task, description: action.payload.description}),
+    [ActionTypes.SET_ALL_COMPLETED]: (state) => state.map((task) => ({...task, completed: true})),
+});
 
-export function queryValue(state = initialState.queryValue, action) {
-    if (action.type === ActionTypes.SET_QUERY_VALUE) {
-        const { queryValue } = action;
-        return queryValue;
+export const queryValue = createReducer(initialState.queryValue,
+    {
+        [ActionTypes.SET_QUERY_VALUE]: (state, action) => action.payload.queryValue,
     }
-    return state;
-}
+);

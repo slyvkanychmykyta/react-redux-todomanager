@@ -1,10 +1,10 @@
 // Core
 import React from 'react';
 
-import TodoManager from '../TaskManager';
+import TaskManager from '../TaskManager';
 
 export default function App() {
     return (
-        <TodoManager />
+        <TaskManager />
     );
 }

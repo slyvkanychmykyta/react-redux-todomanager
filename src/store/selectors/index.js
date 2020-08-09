@@ -1,16 +1,16 @@
 import {sortTasks} from '../../utils/tasks';
-import {createSelector} from 'reselect';
+import {createSelector} from '@reduxjs/toolkit';
 
 const getQuery = (state) => state.queryValue;
 const getTasks = (state) => state.tasks;
 
-const getFilteredTodos = createSelector(
+const getFilteredTasks = createSelector(
     getQuery,
     getTasks,
     (queryValue, tasks) => tasks.filter((task) => task.description.toLowerCase().includes(queryValue.toLowerCase()))
 );
 
 export const getSortedTasks = createSelector(
-    getFilteredTodos,
+    getFilteredTasks,
     (tasks) => sortTasks(tasks)
 );

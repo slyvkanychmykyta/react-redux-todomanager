@@ -9,7 +9,7 @@ import Footer from '../Footer'
 // Instruments
 import Styles from './styles.module.scss';
 
-export default function TodoManager() {
+export default function TaskManager() {
     return (
         <section className={Styles.scheduler}>
             <main className={Styles.main}>

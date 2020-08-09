@@ -1,6 +1,5 @@
 export const generateRandomId = () => Math.random().toString(16).slice(-4);
 
-
 const loadDataFromLocalStorage = (key) => {
     const storageState = localStorage.getItem(key.toString());
     if (storageState) {
